@@ -6,6 +6,7 @@ export class NodeWeb {
 		this.gridMaxSize = {width: 10, height: 10}
 		this.resize()
 		this.elapsed = 0
+		this.cursorPosition = {x: 0, y: 0}
 	}
 
 	resize(){
@@ -38,5 +39,9 @@ export class NodeWeb {
 		}
 
 		context.restore()
+	}
+
+	onMouseMove(cursorPosition) {
+		this.cursorPosition = cursorPosition
 	}
 }
