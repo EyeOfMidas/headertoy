@@ -5,6 +5,8 @@ window.addEventListener("keyup", onKeyUp);
 document.addEventListener("DOMContentLoaded", event => {
 	var container = document.getElementById("header");
 	canvas = document.createElement("canvas")
+	canvas.style.width = "100%"
+	canvas.style.height = "100%"
 	canvas.id = "headertoy"
 	container.appendChild(canvas)
 	context = canvas.getContext('2d');
@@ -384,7 +386,7 @@ function hitAsteroid(asteroid, bullet) {
 
 	if (asteroid.width <= 25) {
 		if (asteroids.length == 0) {
-			alert(`You win! Score: ${ship.score}`);
+			console.log(`You win! Score: ${ship.score}`);
 			init();
 		}
 		return;
@@ -402,7 +404,7 @@ function hitAsteroid(asteroid, bullet) {
 function hitShip(asteroid) {
 	ship.life--;
 	if (ship.life <= 0) {
-		alert(`You lose! Score: ${ship.score}`);
+		console.log(`You lose! Score: ${ship.score}`);
 		init();
 		return;
 	}
