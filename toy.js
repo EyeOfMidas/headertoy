@@ -1,3 +1,5 @@
+import { NodeWeb } from "./NodeWeb.js";
+
 window.addEventListener("resize", resize);
 window.addEventListener("keydown", onKeyDown);
 window.addEventListener("keyup", onKeyUp);
@@ -42,18 +44,19 @@ var bullets = [];
 var shootDelay = 0;
 var asteroids = [];
 
+var web = new NodeWeb()
+
 function init() {
 	for (let i = 0; i < 256; i++) {
 		keys[i] = false;
 	}
 
-	resize();
-
 	//initialize the game objects here
-	initializeStars();
-	initializeAsteroids();
-	initializeShip();
-	initializeBullets();
+	web.initialize()
+
+
+	//resize
+	resize()
 }
 
 function resize() {
@@ -62,6 +65,7 @@ function resize() {
 	canvas.height = canvas.clientHeight;
 	context.width = canvas.clientWidth / dpi;
 	context.height = canvas.clientHeight / dpi;
+	web.resize()
 }
 
 function animate() {
@@ -82,22 +86,12 @@ function clearFrame(context) {
 }
 
 function update() {
-	//update the game objects here
-	updateStars();
-	updateAsteroids();
-	updateBullets();
-	updateShip();
+	web.update()
 
 }
 
 function draw(context) {
-	//draw the game objects here
-	drawStars(context);
-	drawAsteroids(context);
-	drawShip(context);
-	drawBullets(context);
-
-	drawUI(context);
+	web.draw(context)
 }
 
 function rand(min, max) {
