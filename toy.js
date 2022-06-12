@@ -69,13 +69,13 @@ function draw(context) {
 }
 
 function onTouchMove(event) {
-	let containingBounds = event.target.getBoundingClientRect()
-	let cursorPosition = {x: event.touches[0].clientX - containingBounds.x, y: event.touches[0].clientY - containingBounds.y}
+	let containingBounds = canvas.getBoundingClientRect()
+	let cursorPosition = { x: event.touches[0].clientX - containingBounds.left, y: event.touches[0].clientY - containingBounds.top }
 	web.onMouseMove(cursorPosition)
 }
 
 function onMouseMove(event) {
-	let containingBounds = event.target.getBoundingClientRect()
-	let cursorPosition = {x: event.clientX - containingBounds.x, y: event.clientY - containingBounds.y}
+	let containingBounds = canvas.getBoundingClientRect()
+	let cursorPosition = { x: event.clientX - containingBounds.left, y: event.clientY - containingBounds.top }
 	web.onMouseMove(cursorPosition)
 }
