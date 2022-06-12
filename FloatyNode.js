@@ -10,10 +10,10 @@ export default class FloatyNode {
 		}
 		this.offsetPosition = { x: 0, y: 0 }
 		this.nodeSize = 2
-		this.amplitude = {x:16, y: 16}
-		this.period = {x:1/600,y:1/600}
+		this.amplitude = {x:1, y: 1}
+		this.period = {x:0,y:0}
 		this.warpDistance = 256
-		this.warpAmount = 16
+		this.warpAmount = 32
 		this.color = `hsl(0, 100%, 50%)`
 	}
 
@@ -31,8 +31,11 @@ export default class FloatyNode {
 		
 		if (distance < this.warpDistance) {
 			let magnitude = (this.warpDistance - distance) / this.warpDistance
-			this.offsetPosition.x += this.warpAmount * magnitude * directionToCursor.x
-			this.offsetPosition.y += this.warpAmount * magnitude * directionToCursor.y
+			if(this.gridPosition.x == 0 && this.gridPosition.y == 0) {
+			console.log(magnitude)
+			}
+			this.offsetPosition.x += (this.warpAmount * magnitude) * directionToCursor.x
+			this.offsetPosition.y += (this.warpAmount * magnitude) * directionToCursor.y
 		}
 	}
 

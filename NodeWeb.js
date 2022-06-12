@@ -1,6 +1,12 @@
 import FloatyNode from "./FloatyNode.js"
 
 export class NodeWeb {
+	constructor() {
+		this.gridSize = { width: 32, height: 32 }
+		this.gridMaxSize = { width: 10, height: 10 }
+		this.elapsed = 0
+		this.cursorPosition = { x: 0, y: 0 }
+	}
 	initialize() {
 		this.gridSize = { width: 32, height: 32 }
 		this.gridMaxSize = { width: 10, height: 10 }
@@ -20,6 +26,8 @@ export class NodeWeb {
 				this.nodes.push(new FloatyNode(this, x, y, this.gridSize))
 			}
 		}
+		this.cursorPosition.x = this.container.clientWidth / 2
+		this.cursorPosition.y = this.container.clientHeight / 2
 	}
 
 	update() {
@@ -41,6 +49,7 @@ export class NodeWeb {
 	}
 
 	onMouseMove(cursorPosition) {
-		this.cursorPosition = cursorPosition
+		this.cursorPosition.x = cursorPosition.x - (this.gridSize.width / 2)
+		this.cursorPosition.y = cursorPosition.y - (this.gridSize.height / 2)
 	}
 }
