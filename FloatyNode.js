@@ -9,9 +9,9 @@ export default class FloatyNode {
 			y: this.gridPosition.y * this.gridSize.height - (this.gridSize.height / 2)
 		}
 		this.offsetPosition = { x: 0, y: 0 }
-		this.nodeSize = 4
-		this.amplitude = 8
-		this.period = 1 / 100
+		this.nodeSize = 2
+		this.amplitude = 16
+		this.period = 0
 		this.warpDistance = 256
 		this.warpAmount = 16
 	}

@@ -2,7 +2,7 @@ import FloatyNode from "./FloatyNode.js"
 
 export class NodeWeb {
 	initialize() {
-		this.gridSize = { width: 64, height: 64 }
+		this.gridSize = { width: 32, height: 32 }
 		this.gridMaxSize = {width: 10, height: 10}
 		this.resize()
 		this.elapsed = 0
@@ -31,7 +31,7 @@ export class NodeWeb {
 	}
 
 	draw(context) {
-		context.fillStyle = "white"
+		context.fillStyle = "rgb(48,48,48)"
 		context.save()
 		context.translate(this.gridMaxSize.width,this.gridMaxSize.height)
 		for(let i = 0; i < this.nodes.length; i++) {
