@@ -10,10 +10,11 @@ export default class FloatyNode {
 		}
 		this.offsetPosition = { x: 0, y: 0 }
 		this.nodeSize = 2
-		this.amplitude = 16
-		this.period = 0
+		this.amplitude = {x:16, y: 16}
+		this.period = {x:1/600,y:1/600}
 		this.warpDistance = 256
 		this.warpAmount = 16
+		this.color = `hsl(0, 100%, 50%)`
 	}
 
 	angle = (pos1, pos2) => Math.atan2(pos2.y - pos1.y, pos2.x - pos1.x)
@@ -22,10 +23,12 @@ export default class FloatyNode {
 	update() {
 		let distance = this.distance(this.web.cursorPosition, this.initialPosition)
 		let angle = this.angle(this.web.cursorPosition, this.initialPosition)
+		this.color = `hsl(${(180/Math.PI) * angle}, 100%, 50%)`
 		let directionToCursor = { x: Math.cos(angle), y: Math.sin(angle) }
 
-		this.offsetPosition.y = this.amplitude * Math.sin((this.web.elapsed * this.period) + (this.gridPosition.x))
-		this.offsetPosition.x = this.amplitude * Math.sin((this.web.elapsed * this.period) + (this.gridPosition.y))
+		this.offsetPosition.x = this.amplitude.x * Math.cos((this.web.elapsed * this.period.x) + (this.gridPosition.y))
+		this.offsetPosition.y = this.amplitude.y * Math.sin((this.web.elapsed * this.period.y) + (this.gridPosition.x))
+		
 		if (distance < this.warpDistance) {
 			let magnitude = (this.warpDistance - distance) / this.warpDistance
 			this.offsetPosition.x += this.warpAmount * magnitude * directionToCursor.x
@@ -35,6 +38,7 @@ export default class FloatyNode {
 
 	draw(context) {
 		context.save()
+		context.fillStyle = this.color
 		context.translate(this.initialPosition.x, this.initialPosition.y)
 		context.beginPath()
 		context.arc(this.offsetPosition.x, this.offsetPosition.y, this.nodeSize, 0, TAU)

@@ -31,7 +31,6 @@ export class NodeWeb {
 	}
 
 	draw(context) {
-		context.fillStyle = "rgb(48,48,48)"
 		context.save()
 		context.translate(this.gridMaxSize.width, this.gridMaxSize.height)
 		for (let i = 0; i < this.nodes.length; i++) {
